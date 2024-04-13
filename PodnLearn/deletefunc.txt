@@ -1,0 +1,58 @@
+﻿
+                                    + "<asp:LinkButton ID='btnDeletePodcast' runat='server' OnClick='btnDeletePodcast_Click' CommandArgument='" + epName + "'><div><ion-icon name='trash'></ion-icon></div></asp:LinkButton>"
+
+
+protected void btnDeletePodcast_Click(object sender, EventArgs e)
+        {
+            var btn = sender as LinkButton;
+            string epName = btn.CommandArgument; // Get EPName passed as CommandArgument
+
+            string connectionString = ConfigurationManager.ConnectionStrings["connStrPod"].ConnectionString; // Define your connection string here
+            int epId = 0;
+
+            // SQL to get EPId from PodInfo based on EPName
+            string sqlGetEPId = "SELECT podcastID FROM PodInfo WHERE EPName = @EPName";
+
+            // SQL to delete from PodInfo
+            string sqlDeletePodInfo = "DELETE FROM PodInfo WHERE podcastID = @podID";
+
+            // SQL to delete from PodcastDetails (assuming EPId is the link, adjust as necessary)
+            string sqlDeletePodcastDetails = "DELETE FROM PodcastDetails WHERE podcastID = @podcastID";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                // Get EPId
+                using (SqlCommand cmd = new SqlCommand(sqlGetEPId, conn))
+                {
+                    cmd.Parameters.AddWithValue("@EPName", epName);
+                    var result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        epId = Convert.ToInt32(result);
+                    }
+                }
+
+                // Check if EPId was found
+                if (epId > 0)
+                {
+                    // Delete from PodInfo
+                    using (SqlCommand cmd = new SqlCommand(sqlDeletePodInfo, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@podID", epId);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    // Delete from PodcastDetails
+                    using (SqlCommand cmd = new SqlCommand(sqlDeletePodcastDetails, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@podID", epId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+
+            // Optionally, refresh the page or redirect to update the UI
+            Response.Redirect(Request.RawUrl); // Refresh the page to reflect changes
+        }
