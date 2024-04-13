@@ -1,7 +1,7 @@
 <div class="headings" align=center>
   <img src="https://raw.githubusercontent.com/hOMie03/podnlearn/master/PodnLearn/images/logo.png">
   <h1>PodnLearn<sup>©</sup> - Podcast Player and AI-based Learner</h1>
-  <h3>made using <img src="https://www.webnovos.com/assets/img/vector-image/asp/asp_header2.png" width=4%>ASP.NET.</h3>
+  <h3>made using <a href="https://dotnet.microsoft.com/en-us/apps/aspnet"><img src="https://www.webnovos.com/assets/img/vector-image/asp/asp_header2.png" width=4%>ASP.NET</a>.</h3>
   <h2>made with ❤ by <a href="https://www.github.com/hOMie03">om auti</a>.</h2>
 </div>
 <div class="content" align=center>
