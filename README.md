@@ -27,5 +27,4 @@
   <kbd><img src="https://raw.githubusercontent.com/hOMie03/podnlearn/master/PodnLearn/images/Screenshots/auth2.png" width=70%></kbd>
 </div>
 <br><br>
-<h3>You can add more features and functionalities to these by forking it. Thank you for trying it out!</h3>
-<h3 align=center>:)</h3>
+<h3>You can add more features and functionalities to these by forking it. Thank you for trying it out!<br>:)</h3>
